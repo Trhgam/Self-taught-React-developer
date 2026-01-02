@@ -1,12 +1,12 @@
 
 import './App.css'
-import Counter from './component/Count/Counter'
+import Counter2 from './component/Count2/Counter2'
 function App() {
 
 
   return (
     <>
-      <Counter />
+      <Counter2 />
     </>
   )
 }
