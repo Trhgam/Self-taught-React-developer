@@ -1,0 +1,53 @@
+/* Style chung cho mọi nút bấm */
+.btn {
+  border: none;
+  outline: none;
+  padding: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+}
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.btn:hover {
+  background-color: rgb(45, 47, 63);
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: scale(0.95); 
+    filter: brightness(0.9);
+}
+
+
+.btn-number {
+  background-color: #cecee2; 
+}
+
+
+.btn-operator {
+  background-color: #f18c54; 
+}
+
+.btn-operator[data-label="="] {
+  background-color: #76a36a; 
+}
+
+
+.btn-clear {
+  background-color: #e35d5d;
+}
+
+.btn-clear[data-label="CE"]{
+    background-color: #e8b92e;
+}
