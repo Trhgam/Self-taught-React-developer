@@ -89,7 +89,8 @@ alert(user ?? "Anonymous"); // Anonymous (user not defined)
 
 `??` khác với `||` là `||` nó check theo falsy, bao gồm `0` hay `''`, `NaN`
 
-## Template String
+## Template String là dấu kế cạnh số 1 á 
+nó cho phép xuống dòng và cho phép ${} gióng JSTL hay JSP còn ko thì nó chỉ dùng dấu + để nối chuỗi
 
 ```js
 let a = `string text`;
