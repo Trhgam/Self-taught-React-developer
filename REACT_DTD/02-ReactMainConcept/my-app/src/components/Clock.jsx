@@ -41,3 +41,25 @@ export default class Clock extends React.Component {
     );
   }
 }
+
+// Khi bạn dùng this.setState, React sẽ thực hiện 2 việc:
+
+// Gộp (merge) dữ liệu mới vào state.
+
+// Tự động gọi lại hàm render() để cập nhật dòng chữ It is {this.state.time} trên giao diện của bạn.
+
+// Vì nếu khi dùng this.state = {
+//                time: new Date().toLocaleTimeString()
+//              }, trong getTime thì React sẽ không biết được là state đã thay đổi để gọi lại hàm render() cập nhật giao diện.
+// phải dùng setState mới thì React mới biết được là state đã thay đổi. séttate giống nhưu thông báo cho react biết
+// rằng state đã thay đổi và cần gọi lại hàm render() để cập nhật giao diện.
+
+// 1 state cũng có nhiều cấp Nested Object tức như ví dụ 1 state có nhiều prop á
+// thì khi muốn cập nhật lại state thì phải ...state và overide lại thuộc tính muốn cập nhật , thì nó sẽ giữ nguyên
+// các thuộc tính khác không bị thay đổi
+// this.setState({
+//   ...this.state,
+//   time: {
+//     created: new Date().toLocaleTimeString(),
+//   },
+// });
