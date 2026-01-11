@@ -1,0 +1,6 @@
+[*]
+indent_style = space
+indent_size = 2
+# [*] áp dụng cho tất cả các tệp
+# Sử dụng dấu cách để thụt lề với kích thước 2 khoảng trắng
+# indent_size = 2 chỉ định số lượng khoảng trắng cho mỗi cấp thụt lề
