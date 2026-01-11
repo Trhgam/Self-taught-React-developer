@@ -169,6 +169,13 @@ let size = Sizes.S;
 
 // Mình thích dùng type hơn
 
+
+/* Điểm khác nhau giữa interface và type là
+    + interface có thể khai báo lại để mở rộng, tức là cùng tên interface thì sẽ gộp lại (auto merge)
+    + type thì không thể khai báo lại cùng tên để mở rộng được, nó sẽ báo lỗi trùng tên ngay lập tức
+        nhưng bù lại type có thể gộp hoặc union bằng cách sử dụng dấu | hoặc &
+
+*/
 const handleClick = <Type>(value: Type) => value;
 
 let value = 100;
@@ -194,7 +201,15 @@ class Person1 {
 }
 
 const alex = new Person1("Alex", 27);
+/*
+    class trong Typescript hỗ trợ các modifier:
+    + public: có thể truy cập ở bất cứ đâu (mặc định nếu không khai báo gì)
+    + private: chỉ có thể truy cập bên trong class đó
+    + protected: chỉ có thể truy cập bên trong class đó và các class kế thừa nó
+    + readonly: chỉ được phép đọc, không được phép gán lại giá trị mới  
+    và class Ts giống class bên Java
 
+*/
 // alex.money = 200;
 
 // class Person {
@@ -210,3 +225,6 @@ const alex = new Person1("Alex", 27);
 // class Person {
 //   constructor(public name: string, public age: number) {}
 // }
+
+
+/*Interface trong Ts dùng implement để kế thừa các thuộc tính từ interface khác*/
