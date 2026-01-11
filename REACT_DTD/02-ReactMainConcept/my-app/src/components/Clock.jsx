@@ -34,6 +34,10 @@ export default class Clock extends React.Component {
       }))
     );
   }
+  componentDidUpdate() {
+    console.log("componentDidUpdate");
+  }
+
   getTime = () => {
     // previousState.time !== newState.time
     // previousState.time.created !== newState.time.created
