@@ -63,3 +63,7 @@ export default class Clock extends React.Component {
 //     created: new Date().toLocaleTimeString(),
 //   },
 // });
+// không nên gọi this.setState trong constructor vì nó sẽ không kích hoạt lại hàm render
+// vì constructor sẽ chạy đầu tiên từ khi component chưa được khởi tạo (chưa Mouting)
+// 
+// mà chỉ nên dùng this.state = {} trong constructor thôi
