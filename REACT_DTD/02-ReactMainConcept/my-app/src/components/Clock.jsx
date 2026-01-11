@@ -38,6 +38,9 @@ export default class Clock extends React.Component {
     console.log("componentDidUpdate");
   }
 
+  componentWillUnmount(){
+    console.log("componentWillUnmount");
+  }
   getTime = () => {
     // previousState.time !== newState.time
     // previousState.time.created !== newState.time.created
