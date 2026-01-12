@@ -3,6 +3,7 @@ import "./App.css";
 import Clock from "./components/Clock";
 import BareInput from "./components/BareInput";
 import LoginControl from "./components/LoginControl";
+import CorrectlyState from "./components/CorrectlyState";
 
 function App() {
   const [name, setName] = useState("Casio");
@@ -14,7 +15,8 @@ function App() {
       <button onClick={() => setVisible(false)}>Hide Clock component</button>
       {visible && <Clock name={name} />} */}
       {/* <BareInput type="text" value="100" autoFocus className="input-control"/> */}
-      <LoginControl hidden={false} />
+      {/* <LoginControl hidden={false} /> */}
+      <CorrectlyState />
     </div>
   );
 }
