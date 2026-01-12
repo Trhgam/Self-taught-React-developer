@@ -4,6 +4,7 @@ import Clock from "./components/Clock";
 import BareInput from "./components/BareInput";
 import LoginControl from "./components/LoginControl";
 import CorrectlyState from "./components/CorrectlyState";
+import ProductList from "./components/ProductList/ProductList";
 
 function App() {
   const [name, setName] = useState("Casio");
@@ -16,7 +17,8 @@ function App() {
       {visible && <Clock name={name} />} */}
       {/* <BareInput type="text" value="100" autoFocus className="input-control"/> */}
       {/* <LoginControl hidden={false} /> */}
-      <CorrectlyState />
+      {/* <CorrectlyState /> */}
+      <ProductList />
     </div>
   );
 }
