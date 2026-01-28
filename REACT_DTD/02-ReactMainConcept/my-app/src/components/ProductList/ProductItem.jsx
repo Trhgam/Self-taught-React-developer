@@ -1,13 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-export default class ProductItem extends Component {
+export class ProductItem extends Component {
   render() {
-    const product = this.props.product;
+    const { product } = this.props;
     return (
-      <div className="product-item" >
-            <input />
-            {product.name} - {product.avatar}
-        </div>
-    )
+      <div className="product-item">
+        <input />
+        {product.name} - {product.avatar}
+      </div>
+    );
   }
 }
+
+export default ProductItem;

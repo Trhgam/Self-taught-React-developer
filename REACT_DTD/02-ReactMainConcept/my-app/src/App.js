@@ -5,6 +5,7 @@ import BareInput from "./components/BareInput";
 import LoginControl from "./components/LoginControl";
 import CorrectlyState from "./components/CorrectlyState";
 import ProductList from "./components/ProductList/ProductList";
+import Form from "./components/Form/Form";
 
 function App() {
   const [name, setName] = useState("Casio");
@@ -18,7 +19,8 @@ function App() {
       {/* <BareInput type="text" value="100" autoFocus className="input-control"/> */}
       {/* <LoginControl hidden={false} /> */}
       {/* <CorrectlyState /> */}
-      <ProductList />
+      {/* <ProductList /> */}
+      <Form />
     </div>
   );
 }
