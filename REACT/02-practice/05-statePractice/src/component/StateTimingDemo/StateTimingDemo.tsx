@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import ModelDetail from "../ModelDetail/ModelDetail";
 
-const StateTimingDemo = () => {
+const StateTimingDemo = (props : any) => {
   const [count, setCount] = useState(0);
 
   const handleClick = () => {
@@ -20,6 +21,7 @@ const StateTimingDemo = () => {
     <div style={{ padding: "20px", textAlign: "center" }}>
       <h2>Count: {count}</h2>
       <button onClick={handleClick}>Tăng Count</button>
+      <button onClick={props.handleShow}>{props.isShow ? "Ẩn thông tin" : "Hiện thông tin"}</button> 
     </div>
   );
 };
