@@ -115,3 +115,55 @@ h2::before {
 li::marker {
   color: blue;
 }
+
+```
+---
+
+### CSS 2D Transformation Functions
+
+| Hàm | Chức năng | Giải thích chi tiết |
+| :--- | :--- | :--- |
+| **`translate(x, y)`** | Di chuyển | Di chuyển phần tử khỏi vị trí gốc theo trục X (ngang) và Y (dọc). |
+| **`rotate(angle)`** | Quay | Quay phần tử theo một góc (ví dụ: `45deg`). Số dương quay theo chiều kim đồng hồ. |
+| **`scale(x, y)`** | Co giãn | Thay đổi kích thước phần tử. `1` là giữ nguyên, `>1` là phóng to, `<1` là thu nhỏ. |
+| **`scaleX(n)`** | Co giãn ngang | Chỉ thay đổi chiều rộng của phần tử. |
+| **`scaleY(n)`** | Co giãn dọc | Chỉ thay đổi chiều cao của phần tử. |
+| **`skew(x, y)`** | Nghiêng | Làm nghiêng phần tử theo trục X và Y một góc nhất định. |
+| **`skewX(angle)`** | Nghiêng ngang | Nghiêng phần tử dọc theo trục X. |
+| **`skewY(angle)`** | Nghiêng dọc | Nghiêng phần tử dọc theo trục Y. |
+| **`matrix(a,b,c,d,e,f)`** | Ma trận | Kết hợp tất cả 6 hàm trên (scale, skew, translate) vào một dòng code. |
+
+```css
+/* Di chuyển phần tử sang phải 50px và xuống 20px */
+.box-move {
+  transform: translate(50px, 20px);
+}
+
+/* Quay phần tử 30 độ */
+.box-rotate {
+  transform: rotate(30deg);
+}
+
+/* Phóng to đều 1.2 lần */
+.box-scale {
+  transform: scale(1.2);
+}
+
+/* Nghiêng trục X 20 độ */
+.box-skew {
+  transform: skewX(20deg);
+}
+
+/* Kết hợp nhiều hiệu ứng cùng lúc */
+.box-complex {
+  /* Di chuyển -> Quay -> Phóng to */
+  transform: translate(10px, 10px) rotate(15deg) scale(1.1);
+}
+
+/* Sử dụng ma trận (Matrix) */
+/* Cú pháp: matrix(scaleX(), skewY(), skewX(), scaleY(), translateX(), translateY()) */
+.box-matrix {
+  transform: matrix(1, 0.5, 0, 1, 0, 0);
+}
+```
+---
