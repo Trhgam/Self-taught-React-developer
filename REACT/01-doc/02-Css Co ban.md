@@ -167,3 +167,56 @@ li::marker {
 }
 ```
 ---
+
+## CSS 3D Transformation Functions
+
+| Hàm | Trục xoay | Giải thích chi tiết |
+| :--- | :--- | :--- |
+| **`rotateX(angle)`** | Trục X (Ngang) | Xoay phần tử quanh trục nằm ngang (giống như lật một tấm bảng lên/xuống). |
+| **`rotateY(angle)`** | Trục Y (Dọc) | Xoay phần tử quanh trục thẳng đứng (giống như cánh cửa đang mở/đóng). |
+| **`rotateZ(angle)`** | Trục Z | Xoay phần tử quanh trục vuông góc với màn hình (tương đương với `rotate()` trong 2D). |
+
+
+---
+
+### Code ví dụ minh họa (CSS)
+
+```css
+/* Container cần có thuộc tính perspective để tạo hiệu ứng chiều sâu 3D */
+.container {
+  perspective: 1000px; 
+}
+
+.box {
+  width: 150px;
+  height: 150px;
+  background-color: #3498db;
+  transition: transform 0.5s;
+}
+
+/* Xoay quanh trục X: tạo cảm giác phần tử ngả ra sau */
+.box-x:hover {
+  transform: rotateX(45deg);
+}
+
+/* Xoay quanh trục Y: tạo cảm giác phần tử quay ngang */
+.box-y:hover {
+  transform: rotateY(45deg);
+}
+
+/* Xoay quanh trục Z: quay tròn trên mặt phẳng màn hình */
+.box-z:hover {
+  transform: rotateZ(45deg);
+}
+
+/* Kết hợp xoay đa trục để tạo hiệu ứng khối 3D phức tạp */
+.box-3d:hover {
+  transform: rotateX(45deg) rotateY(45deg);
+}
+
+```
+#### Một số lưu ý quan trọng khi làm việc với 3D:
+1.  **`perspective`**: Luôn đặt thuộc tính này ở thẻ cha để định nghĩa khoảng cách từ mắt người xem đến vật thể. Nếu không có nó, các phép xoay 3D sẽ trông phẳng lỳ như 2D.
+2.  **`backface-visibility`**: Bạn có thể dùng `backface-visibility: hidden;` nếu muốn ẩn mặt sau của phần tử khi nó xoay 180 độ.
+
+Bạn có muốn tôi hướng dẫn cách làm một hiệu ứng "Card Flip" (lật thẻ bài) sử dụng các thuộc tính 3D này không?
