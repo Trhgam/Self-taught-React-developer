@@ -219,4 +219,42 @@ li::marker {
 1.  **`perspective`**: Luôn đặt thuộc tính này ở thẻ cha để định nghĩa khoảng cách từ mắt người xem đến vật thể. Nếu không có nó, các phép xoay 3D sẽ trông phẳng lỳ như 2D.
 2.  **`backface-visibility`**: Bạn có thể dùng `backface-visibility: hidden;` nếu muốn ẩn mặt sau của phần tử khi nó xoay 180 độ.
 
-Bạn có muốn tôi hướng dẫn cách làm một hiệu ứng "Card Flip" (lật thẻ bài) sử dụng các thuộc tính 3D này không?
+---
+### The CSS transition Property
+
+Thuộc tính `transition` là cách viết tắt (shorthand) để tạo hiệu ứng chuyển động mượt mà khi một phần tử thay đổi từ trạng thái này sang trạng thái khác.
+
+| Thuộc tính | Ý nghĩa | Mô tả chi tiết |
+| :--- | :--- | :--- |
+| **`transition-property`** | Thuộc tính cần diễn hoạt | Tên các thuộc tính CSS muốn áp dụng hiệu ứng (ví dụ: `width`, `background-color`, `all`). |
+| **`transition-duration`** | Thời gian diễn xuất | Khoảng thời gian để hoàn thành hiệu ứng (ví dụ: `0.3s`, `500ms`). |
+| **`transition-timing-function`** | Hàm thời gian | Quy định tốc độ của hiệu ứng (ví dụ: `ease`, `linear`, `ease-in`, `ease-out`, `cubic-bezier`). |
+| **`transition-delay`** | Thời gian chờ | Khoảng thời gian trì hoãn trước khi hiệu ứng bắt đầu bắt đầu (ví dụ: `1s`). |
+
+
+
+## Code ví dụ minh họa
+
+```css
+.card {
+  width: 200px;
+  height: 200px;
+  background-color: #3498db;
+  
+  /* 1. Cách viết đầy đủ (Longhand) */
+  transition-property: background-color, transform;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+
+  /* 2. Cách viết tắt (Shorthand) */
+  /* Cú pháp: property duration timing-function delay */
+  transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* Hiệu ứng khi di chuột qua */
+.card:hover {
+  background-color: #e74c3c;
+  transform: scale(1.1) rotate(5deg);
+}
+```
