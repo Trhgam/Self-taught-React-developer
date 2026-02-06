@@ -12,7 +12,7 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  transition: color 0.3s;
+  transition: color 0.4s ease-in-out;
 }
 
 /* Hộp thoại nội dung */
@@ -24,12 +24,13 @@
   min-width: 300px;
   text-align: center;
   width: 40%;
-  animation: slideIn 0.3s ease-out;
+  animation: slideIn 0.3s ease-in-out;
 }
 
 @keyframes slideIn {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+
 }
 /* Nút đóng (X) */
 .close-btn {
