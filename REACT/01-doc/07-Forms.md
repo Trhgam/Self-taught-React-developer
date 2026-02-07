@@ -1,10 +1,4 @@
 
-Gemini
-Hỏi về tệp của bạn
-Tóm tắt thư mục này
-Phân tích từng tệp trong thư mục này
-Gemini có thể làm gì với các thư mục trong Google Drive
-Gemini trong Workspace có thể mắc sai sót. Tìm hiểu thêm
 # Bài 07: Forms - Xử lý Form trong React
 
 ## 📚 Controlled vs Uncontrolled Components
