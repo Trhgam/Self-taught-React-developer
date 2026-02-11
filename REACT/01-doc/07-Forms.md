@@ -126,5 +126,15 @@ const handleSubmit = (e) => {
 4. **Disable button while submitting**
 5. **Clear form after success**
 6. **Use controlled components**
+---
 
-Chuyển sang **Bài 08**!
+### 5. Liên hệ với Formik (Người trợ lý thông minh)
+Nếu làm theo cách ở Bài 07 (React thuần), bạn giống như một giáo viên phải tự tay đi thu từng tờ giấy, tự chấm từng lỗi, tự nhắc học sinh viết lại. Khi lớp có 50 học sinh (50 ô input), bạn sẽ kiệt sức.
+
+Formik xuất hiện như một "Lớp trưởng trợ lý":
+
+Quản lý thay bạn: Thay vì bạn phải tạo 50 cái useState, Formik nói: "Thầy/Cô cứ đưa danh sách tên học sinh cho em, em tự quản lý hết đống tủ đồ đó cho".
+
+Chấm bài tự động: Formik kết hợp với một anh bạn tên là Yup. Bạn chỉ cần đưa ra luật (ví dụ: Tên phải trên 5 chữ), Formik và Yup sẽ tự báo lỗi cho học sinh mà bạn không cần viết hàm if/else dài dòng.
+
+Làm hết việc vặt: Những việc như e.preventDefault() hay theo dõi xem học sinh đã chạm vào ô nhập liệu chưa (touched), Formik lo từ A-Z.
