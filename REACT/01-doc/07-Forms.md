@@ -128,7 +128,7 @@ const handleSubmit = (e) => {
 6. **Use controlled components**
 ---
 
-### 5. Liên hệ với Formik (Người trợ lý thông minh)
+### 5. Liên hệ với Formik 
 Nếu làm theo cách ở Bài 07 (React thuần), bạn giống như một giáo viên phải tự tay đi thu từng tờ giấy, tự chấm từng lỗi, tự nhắc học sinh viết lại. Khi lớp có 50 học sinh (50 ô input), bạn sẽ kiệt sức.
 
 Formik xuất hiện như một "Lớp trưởng trợ lý":
