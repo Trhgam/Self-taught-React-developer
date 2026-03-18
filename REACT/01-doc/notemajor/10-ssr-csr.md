@@ -1,51 +1,124 @@
-#### So sánh SSR và CSR ne
+# Kiến thức chuyên sâu: SSR vs CSR
+
+### 1. Bảng so sánh tổng quan
+
+| Đặc điểm           | **Server-Side Rendering (SSR)**            | **Client-Side Rendering (CSR)**                       |
+| :----------------- | :----------------------------------------- | :---------------------------------------------------- |
+| **Cơ chế**         | HTML được tạo sẵn trên **Server**.         | Browser tải **HTML rỗng** và file JS.                 |
+| **SEO**            | **Rất tốt** (Bot dễ quét nội dung).        | **Hạn chế** (Phụ thuộc vào khả năng chạy JS của Bot). |
+| **Tốc độ tải đầu** | **Nhanh** (Người dùng thấy nội dung ngay). | **Chậm** (Phải chờ tải và thực thi JS xong).          |
+| **Tương tác**      | Cần thời gian **Hydration**.               | **Mượt mà** ngay sau khi load xong.                   |
 
 ---
 
-#### 1. Tổng quan khái niệm ne
+### 2. Cơ chế Hydration trong SSR
 
-| Đặc điểm           | **Server-Side Rendering (SSR)**     | **Client-Side Rendering (CSR)**  |
-| :----------------- | :---------------------------------- | :------------------------------- |
-| **Cơ chế**         | HTML được tạo sẵn trên **Server**.  | Browser tải **HTML rỗng** và JS. |
-| **SEO**            | **Rất tốt** (Bot dễ quét nội dung). | **Hạn chế** (Phụ thuộc vào Bot). |
-| **Tốc độ tải đầu** | **Nhanh** (Thấy nội dung ngay).     | **Chậm** (Phải chờ tải JS).      |
-| **Tương tác**      | Chậm hơn (**Hydration**).           | **Mượt mà** sau khi load xong.   |
+**Hydration** là quá trình "hồi sinh" các thành phần tĩnh thành các thành phần có khả năng tương tác.
+
+- **Quy trình:** Server gửi về bản HTML tĩnh (đã có nội dung chữ, hình ảnh). Trình duyệt hiển thị bản này ngay lập tức. Sau đó, trình duyệt tải JavaScript và "gắn" (hydrate) các sự kiện (click, submit, hover...) vào các thẻ HTML tương ứng.
+- **Lợi ích:** Tối ưu chỉ số **First Contentful Paint (FCP)**, giúp người dùng cảm thấy trang web load cực nhanh dù JS vẫn đang tải ngầm.
 
 ---
 
-#### 2. Luồng hoạt động chi tiết ne
+### 3. Ví dụ Code minh họa
 
-##### **Server-Side Rendering (SSR)**
+#### Server-Side Rendering (SSR) với Next.js
 
-- **Bước 1:** User gửi **Request** đến Server.
-- **Bước 2:** Server lấy dữ liệu từ **Database**, render thành file **HTML hoàn chỉnh**.
-- **Bước 3:** Browser nhận HTML và hiển thị nội dung ngay lập tức cho người dùng.
-- **Bước 4:** Browser tải các file **JavaScript** để kích hoạt các sự kiện tương tác (**Hydration**).
+Sử dụng `getServerSideProps` để fetch dữ liệu tại Server.
 
-##### **Client-Side Rendering (CSR)**
+```javascript
+// pages/products.js
+export async function getServerSideProps() {
+  // Logic này chạy hoàn toàn trên Server
+  const res = await fetch(
+    "[https://api.example.com/products](https://api.example.com/products)",
+  );
+  const data = await res.json();
 
-- **Bước 1:** User gửi **Request**.
-- **Bước 2:** Server phản hồi một file **HTML rỗng** và các tệp **JavaScript**.
-- **Bước 3:** Browser thực thi JavaScript, hiển thị trạng thái **Loading**.
-- **Bước 4:** JavaScript gọi **API** lấy dữ liệu và render nội dung trực tiếp vào **DOM**.
+  // Truyền data vào component thông qua props
+  return { props: { data } };
+}
+
+export default function Products({ data }) {
+  return (
+    <div>
+      <h1>Danh sách sản phẩm (SSR)</h1>
+      <ul>
+        {data.map((item) => (
+          <li key={item.id}>{item.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+#### 3. Ví dụ Code minh họa (Tiếp theo)
+
+##### **Client-Side Rendering (CSR) với React thuần**
+
+Sử dụng `useEffect` để fetch dữ liệu tại trình duyệt sau khi trang đã load khung HTML cơ bản.
+
+```javascript
+// components/Products.js
+import { useEffect, useState } from "react";
+
+export default function Products() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Dữ liệu được fetch tại trình duyệt (Client) sau khi trang đã hiển thị khung
+    fetch(
+      "[https://api.example.com/products](https://api.example.com/products)",
+    )
+      .then((res) => res.json())
+      .then((json) => {
+        setData(json);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <p>Đang tải dữ liệu từ Client...</p>;
+
+  return (
+    <div>
+      <h1>Danh sách sản phẩm (CSR)</h1>
+      <ul>
+        {data.map((item) => (
+          <li key={item.id}>{item.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+#### 4. Phân tích công dụng thực tế
+
+##### **Công dụng của SSR (Server-Side Rendering):**
+
+- **Tối ưu SEO:** Cực kỳ quan trọng cho các trang bán hàng, tin tức để nội dung dễ dàng xuất hiện và đạt thứ hạng cao trên Google.
+- **Tải trang nhanh (First Contentful Paint):** Giúp người dùng thấy ngay nội dung hữu ích, giảm tỷ lệ thoát trang, đặc biệt hiệu quả với người dùng mạng yếu.
+- **Bảo mật:** Các logic lấy dữ liệu phức tạp hoặc sử dụng API Key nhạy cảm được thực hiện ở Server, tránh lộ thông tin ra phía Client.
+
+##### **Công dụng của CSR (Client-Side Rendering):**
+
+- **Tiết kiệm tài nguyên Server:** Giảm tải đáng kể cho Server vì việc render giao diện nặng nhọc đã được đẩy cho máy tính/điện thoại của người dùng xử lý.
+- **Trải nghiệm mượt mà (SPA):** Khi đã load xong ứng dụng ban đầu, việc chuyển giữa các trang con diễn ra tức thì, không bị hiện tượng "trắng màn hình" do phải load lại toàn bộ trang.
+- **Giảm băng thông:** Sau lần tải đầu tiên, các thao tác sau này chỉ truyền nhận dữ liệu JSON gọn nhẹ thay vì phải gửi cả khối HTML lớn từ Server.
 
 ---
 
-#### 3. Ưu và Nhược điểm ne
+#### 5. Chiến lược lựa chọn kỹ thuật
 
-##### **Server-Side Rendering (SSR)**
-
-- **Ưu điểm:** Tối ưu hóa cho **SEO**, hiển thị nội dung nhanh trên các thiết bị cấu hình yếu hoặc mạng chậm.
-- **Nhược điểm:** Gây áp lực lớn lên **CPU của Server**, mỗi lần chuyển trang thường phải tải lại toàn bộ tài nguyên.
-
-##### **Client-Side Rendering (CSR)**
-
-- **Ưu điểm:** Trải nghiệm người dùng (**UX**) cực tốt, chuyển trang mượt mà vì chỉ thay đổi dữ liệu (Single Page Application - **SPA**).
-- **Nhược điểm:** Lần tải trang đầu tiên (**First Load**) chậm, khó khăn trong việc lên top tìm kiếm nếu không cấu hình **Pre-rendering**.
+| Loại dự án                   | Kỹ thuật khuyên dùng | Lý do                                                                         |
+| :--------------------------- | :------------------- | :---------------------------------------------------------------------------- |
+| **Landing Page / Blog**      | **SSR**              | Cần SEO tuyệt đối và tốc độ hiển thị nội dung tức thì để giữ chân khách.      |
+| **Trang Thương mại điện tử** | **SSR**              | Đảm bảo sản phẩm và mô tả luôn xuất hiện đầy đủ trên kết quả tìm kiếm Google. |
+| **Dashboard / Admin Panel**  | **CSR**              | Cần tương tác cao, dữ liệu thay đổi liên tục và không yêu cầu SEO công khai.  |
+| **App nội bộ / Công cụ**     | **CSR**              | Tối ưu chi phí vận hành và duy trì tài nguyên Server cho doanh nghiệp.        |
 
 ---
 
-#### 4. Trường hợp sử dụng ne
-
-- **Nên dùng SSR khi:** Làm trang **Thương mại điện tử**, **Tin tức**, **Blog** hoặc bất kỳ trang nào cần **SEO** làm trọng tâm.
-- **Nên dùng CSR khi:** Làm các ứng dụng cần tương tác cao như **Dashboard**, **CRM**, **SaaS** hoặc các trang yêu cầu đăng nhập mới thấy nội dung.
+####
