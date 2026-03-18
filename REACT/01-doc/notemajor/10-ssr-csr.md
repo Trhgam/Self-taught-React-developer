@@ -120,5 +120,8 @@ export default function Products() {
 | **App nội bộ / Công cụ**     | **CSR**              | Tối ưu chi phí vận hành và duy trì tài nguyên Server cho doanh nghiệp.        |
 
 ---
+SEO (viết tắt của Search Engine Optimization) là Tối ưu hóa công cụ tìm kiếm.
+
+Nói một cách đơn giản nhất, SEO là tập hợp các phương pháp giúp trang web của bạn xuất hiện ở vị trí cao (thường là trang 1) trên kết quả tìm kiếm của Google, Bing... khi người dùng gõ một từ khóa nào đó.
 
 ####
