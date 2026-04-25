@@ -9,7 +9,7 @@ I am a dedicated **Student Developer** specializing in the React ecosystem. This
 ### 🛠 Technical Excellence
 * **Architecture:** Component-based UI, Reusable Patterns.
 * **State Management:** Reactive Data Flow (Props, State, Context).
-* **Tooling:** Vite, NPM, Git, Chrome DevTools.
+* **Tooling:** Vite, NPM, Git, Chrome DevTools, React Router Dom.
 * **Validation:** Type-safety with **PropTypes** and **TypeScript**.
 
 ---
